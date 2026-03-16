@@ -41,6 +41,12 @@ public class morseDict {
 		return morse2char.containsKey(code);
 	}
 	
+	public String decode(String code) {
+		return morse2char.get(code);
+	}
 	
+	public String encode(String character) {
+		return char2morse.get(character);
+	}
 
 }
