@@ -5,14 +5,11 @@ public class agentRecords {
 	
 	//hashmap created to contain agent info, such as their callsign and 
 	//corresponding location
-	private Map<String, String> agentInfo = new HashMap<String, String>();
-	
-	//adding each individual agent record via the constructor 
-	public agentRecords() {
-		agentInfo.put("AG10A", "A");
-		agentInfo.put("AG20B", "B");
-		agentInfo.put("AG30C", "C");
-	}
+	private Map<String, String> agentInfo = new HashMap<String, String>() {{
+		put("AG10A", "A");
+		put("AG20B", "B");
+		put("AG30C", "C");
+	}};
 	
 	public boolean isFormatValid(String qrData) {
 		
@@ -49,6 +46,19 @@ public class agentRecords {
         }
         
 		return true;
+	}
+	
+	
+	public boolean doesAgentExist(String callSign, String location) {
+		//check if callsign exists among the records stored in the hashmap
+        if (!agentInfo.containsKey(callSign)) {
+            return false;
+        }
+
+        //Compares location stored in records against the one provided
+        //The value(location) mapped/associated with the callSign is stored in storedLocation
+        String storedLocation = agentInfo.get(callSign);
+        return storedLocation.equals(location);
 	}
 
 }
