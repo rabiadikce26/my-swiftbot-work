@@ -63,6 +63,9 @@ public class userAuthenticate {
                 System.out.println("Please scan your QR code again.");
                 continue;
 			}
+            
+            System.out.println("\nAuthentication " + allColours.GREEN + "successful!" + allColours.RESET);
+            System.out.println("Message menu loading...");
 		}
 	}
 }
