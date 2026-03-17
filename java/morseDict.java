@@ -18,14 +18,12 @@ public class morseDict {
 	
 	private void loadDict() {
 		String[][] dictEntries = {
-	            {"A", ".-"},   {"B", "-..."}, {"C", "-.-."}, {"D", "-.."},
-	            {"E", "."},    {"F", "..-."}, {"G", "--."},  {"H", "...."},
-	            {"I", ".."},   {"J", ".---"}, {"K", "-.-"},  {"L", ".-.."},
-	            {"M", "--"},   {"N", "-."},   {"O", "---"},  {"P", ".--."},
-	            {"Q", "--.-"}, {"R", ".-."},  {"S", "..."},  {"T", "-"},
-	            {"U", "..-"},  {"V", "...-"}, {"W", ".--"},  {"X", "-..-"},
-	            {"Y", "-.--"}, {"Z", "--.."},
-	            {"0", "-----"}
+				{"A", ".-"},   {"G", "--."},  {"M", "--"},   {"S", "..."},  {"Y", "-.--"},
+	            {"B", "-..."}, {"H", "...."}, {"N", "-."},   {"T", "-"},    {"Z", "--.."},
+	            {"C", "-.-."}, {"I", ".."},   {"O", "---"},  {"U", "..-"},  {"0", "-----"},
+	            {"D", "-.."},  {"J", ".---"}, {"P", ".--."},  {"V", "...-"},
+	            {"E", "."},    {"K", "-.-"},  {"Q", "--.-"}, {"W", ".--"},
+	            {"F", "..-."}, {"L", ".-.."}, {"R", ".-."},  {"X", "-..-"}
 	        };
 		
 		//iterates through each entry and places them in the linked hash maps
@@ -49,4 +47,26 @@ public class morseDict {
 		return char2morse.get(character);
 	}
 
+
+	//whenever this is called, it will print out the dictionary on the console
+	public void showDict() {
+		System.out.println("\nHere is the morse code dictionary to help with writing messages:\n");
+        int count = 0;
+        
+        //goes through every entry, getting both values in the entry to then print them like this
+        //A: .-      | G: -.   
+        //B: -...    | H: ....
+        for (Map.Entry<String, String> entry : char2morse.entrySet()) {
+            System.out.printf("%-2s: %-7s", entry.getKey(), entry.getValue());
+            count++;
+            //makes sure each column has no more than 6 rows
+            if (count % 5 == 0) {
+                System.out.println();
+            } else {
+                System.out.print(" | ");
+            }
+        }
+        System.out.println();
+	}
+	
 }
