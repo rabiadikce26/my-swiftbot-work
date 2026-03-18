@@ -110,6 +110,8 @@ public class userAuthenticate {
             }
 
             System.out.println("\nVerification " + allColours.GREEN + "successful!" + allColours.RESET);
+            
+            return new String[]{callSign, location};
         }
     }
 	

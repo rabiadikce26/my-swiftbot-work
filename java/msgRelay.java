@@ -34,7 +34,7 @@ public class msgRelay {
     public void relayMsg(String senderCallSign, String senderLocation, String msgContent) throws InterruptedException {
     	
     	System.out.println(allColours.PURPLE + "\n==============================");
-        System.out.println("    Morse Code Delivering Menu");
+        System.out.println("  Morse Code Delivering Menu");
         System.out.println("==============================" + allColours.RESET);
         System.out.println("\nWelcome to the delivering message menu.");
         System.out.println("\nHere is a guide to help with decoding how the message is being transmitted");
@@ -45,7 +45,7 @@ public class msgRelay {
         System.out.println("End of word      ->  LEDs flash " + allColours.RED    + "red"    + allColours.RESET);
         System.out.println("End of message   ->  LEDs flash " + allColours.GREEN  + "green"  + allColours.RESET);
 
-        System.out.println("\nThe sender of your message is: " + allColours.PURPLE + senderCallSign + allColours.RESET);
+        System.out.println("\nThe sender of your message is: " + allColours.PURPLE + senderLocation + allColours.RESET);
         System.out.println("Delivering message now...");
         
         //put whole message together to make looping through it easier

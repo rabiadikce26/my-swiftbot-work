@@ -44,8 +44,7 @@ public class morseInput {
 				//if the morse char sequence doesn't exist in the dictionary
 				if (decodeChar == null) {
 					errSignal();
-					System.out.println(allColours.RED + "\nERROR:" + allColours.RESET
-							+ " Invalid Morse code character input detected.");
+					System.out.println(allColours.RED + "\nERROR:" + allColours.RESET + " Invalid Morse code character input detected.");
 					System.out.println("Please review the instructions and dictionary once more, and try again.");
 					msgMenu();
 					//
@@ -61,8 +60,7 @@ public class morseInput {
 					//check contents of msg isn't empty
 					if (message.isEmpty()) {
 						errSignal();
-						System.out
-								.println(allColours.RED + "\nERROR:" + allColours.RESET + " Message cannot be empty.");
+						System.out.println(allColours.RED + "\nERROR:" + allColours.RESET + " Message cannot be empty.");
 						morseChar = "";
 						System.out.print("\nInput: ");
 						continue;
@@ -76,9 +74,9 @@ public class morseInput {
 					//check if destination is of one of the 3 valid locations
 					if (!destination.equals("A") && !destination.equals("B") && !destination.equals("C")) {
 						errSignal();
-						System.out.println(allColours.RED + "\nERROR:" + allColours.RESET
-								+ " The first word of the message must be a valid destination (A, B, or C).");
+						System.out.println(allColours.RED + "\nERROR:" + allColours.RESET + " The first word of the message must be a valid destination (A, B, or C).");
 						morseChar = "";
+						message = "";
 						System.out.print("\nInput: ");
 						continue;
 					}
@@ -87,9 +85,9 @@ public class morseInput {
 					//as you can't send the message to yourself
 					if (destination.equals(senderLoc)) {
 						errSignal();
-						System.out.println(allColours.RED + "\nERROR:" + allColours.RESET
-								+ " The destination cannot be the same as the sender's location.");
+						System.out.println(allColours.RED + "\nERROR:" + allColours.RESET + " The destination cannot be the same as the sender's location.");
 						morseChar = "";
+						message = "";
 						System.out.print("\nInput: ");
 						continue;
 					}
@@ -128,12 +126,12 @@ public class morseInput {
     //prints whole message menu, including morse code dictionary
     private void msgMenu() {
         System.out.println(allColours.CYAN + "\n==============================");
-        System.out.println("    Morse Code Messaging Menu");
+        System.out.println("   Morse Code Messaging Menu");
         System.out.println("==============================" + allColours.RESET);
         System.out.println("\nWelcome to the messaging menu.");
         dict.showDict();
         System.out.println(allColours.CYAN + "\n--------------------------------------------");
-        System.out.println("    Instructions on using SwiftBot Buttons");
+        System.out.println("   Instructions on using SwiftBot Buttons");
         System.out.println("--------------------------------------------" + allColours.RESET);
         System.out.println("Here is how to type in morse code using the SwiftBot buttons.\n");
         System.out.println("Button X  ->  Dot  (.)");

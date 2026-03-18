@@ -9,7 +9,7 @@ public class spybotMain {
 		
 		//main menu that is displayed upon starting the program
 		System.out.println(allColours.CYAN + "\n==============================");
-        System.out.println("    Morse Code Communication");
+        System.out.println("   Morse Code Communication");
         System.out.println("==============================" + allColours.RESET);
         System.out.println("\nWelcome to the secure morse code communication program!");
         System.out.println("\nBefore continuing, please authenticate yourself by scanning a QR code in front of the SwiftBot's camera.");
@@ -36,7 +36,6 @@ public class spybotMain {
         String destination = message.split(" ")[0];
         String messageContent = message.substring(destination.length()).trim();
 
-        System.out.println("\nMessage " + allColours.GREEN + "successfully" + allColours.RESET + " logged!");
         System.out.println("Sending message to recipient...");
         
         
