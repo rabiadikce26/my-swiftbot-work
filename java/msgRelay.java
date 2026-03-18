@@ -31,7 +31,7 @@ public class msgRelay {
     }
     
     
-    public void relayMsg(String senderCallSign, String senderLocation, String msgContent) {
+    public void relayMsg(String senderCallSign, String senderLocation, String msgContent) throws InterruptedException {
     	
     	System.out.println(allColours.PURPLE + "\n==============================");
         System.out.println("    Morse Code Delivering Menu");
@@ -47,6 +47,44 @@ public class msgRelay {
 
         System.out.println("\nThe sender of your message is: " + allColours.PURPLE + senderCallSign + allColours.RESET);
         System.out.println("Delivering message now...");
+        
+        //put whole message together to make looping through it easier
+        String fullMessage = senderLocation + " " + msgContent;
+        
+        //breaks down whole message into array individual words
+        String[] words = fullMessage.split(" ");
+        
+        //loops through every word
+        for (int i = 0; i < words.length; i++) {
+        	String word = words[i];
+        	
+        	//loops through every character in the word
+        	//.toCharArray breaks down every word into its characters
+        	for (char c : word.toCharArray()) {
+        		String morseCode = dict.encode(String.valueOf(c)); //convert character to string
+        														  //and look up in dictionary
+        		
+        		//loops through every morse code symbol
+        		//.toCharArray breaks down every morse code sequence into its individual symbols
+        		for (char symbol : morseCode.toCharArray()) {
+        			if (symbol == '.') {
+                        oneBlink(WHITE);
+                    } 
+        			else if (symbol == '-') {
+                        oneBlink(BLUE);
+                    }
+				}
+        		
+        		//end of character
+        		oneBlink(AMBER);
+			}
+        	
+        	//end of word
+        	oneBlink(RED);
+		}
+        
+        //end of message
+        oneBlink(GREEN);
     }
 
 }
