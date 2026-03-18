@@ -34,7 +34,7 @@ public class userAuthenticate {
         }
     }
 	
-	public String verifyUser() throws InterruptedException {
+	public String[] verifyUser() throws InterruptedException {
 		
 		//If any of the if conditions are found to be true, it goes back to the top of the loop
 		//via continue; to scan the QR code again
@@ -43,7 +43,7 @@ public class userAuthenticate {
 			
 			//checks if scanned info is in the valid format
 			if (qrInfo == null || qrInfo.isEmpty() || !agentRecs.isFormatValid(qrInfo)) {
-				//error signal here
+				errSignal();
 				System.out.println(allColours.RED + "ERROR:" + allColours.RESET + " Invalid QR code detected.");
                 System.out.println("The content stored on the QR code does not match any stored agent data.");
                 System.out.println("Please scan your QR code again.");
@@ -57,7 +57,7 @@ public class userAuthenticate {
             
             //checks whether scanned info matches with an existing agent
             if (!agentRecs.doesAgentExist(callSign, location)) {
-            	//error signal here
+            	errSignal();
             	System.out.println(allColours.RED + "ERROR:" + allColours.RESET + " Invalid QR code detected.");
                 System.out.println("The content stored on the QR code does not match any stored agent data.");
                 System.out.println("Please scan your QR code again.");
@@ -66,6 +66,62 @@ public class userAuthenticate {
             
             System.out.println("\nAuthentication " + allColours.GREEN + "successful!" + allColours.RESET);
             System.out.println("Message menu loading...");
+            
+            return new String[]{callSign, location};
 		}
 	}
+	
+	
+	public String[] verifyReceiver(String expectedLocation) throws InterruptedException {
+
+        while (true) {
+            String qrInfo = scanQRCode();
+
+          //checks if scanned info is in the valid format
+            if (qrInfo == null || qrInfo.isEmpty() || !agentRecs.isFormatValid(qrInfo)) {
+                errSignal();
+                System.out.println(allColours.RED + "ERROR:" + allColours.RESET + " Invalid QR code detected.");
+                System.out.println("The content stored on the QR code does not match any stored agent data.");
+                System.out.println("Please scan your QR code again.");
+                continue;
+            }
+
+            String[] parts = qrInfo.split(":");
+            String callSign = parts[0].toUpperCase();
+            String location = parts[1].toUpperCase();
+
+            //location on QR must match the destination
+            boolean locationMatchesDestination = location.equals(expectedLocation);
+            if (!locationMatchesDestination) {
+                errSignal();
+                System.out.println(allColours.RED + "ERROR:" + allColours.RESET + " Invalid QR code detected.");
+                System.out.println("The content stored on the QR code either does not match the destination,");
+                System.out.println("or the recipient's stored data.");
+                System.out.println("Please scan your QR code again.");
+                continue;
+            }
+
+            if (!agentRecs.doesAgentExist(callSign, location)) {
+                errSignal();
+                System.out.println(allColours.RED + "ERROR:" + allColours.RESET + " Invalid QR code detected.");
+                System.out.println("The content stored on the QR code does not match any stored agent data.");
+                System.out.println("Please scan your QR code again.");
+                continue;
+            }
+
+            System.out.println("\nVerification " + allColours.GREEN + "successful!" + allColours.RESET);
+        }
+    }
+	
+	//method that displays an error signal via blinking pink lights twice
+    private void errSignal() throws InterruptedException {
+        int[] pink = {255, 20, 147};
+
+        for (int i = 0; i < 2; i++) {
+            swiftbot.fillUnderlights(pink);
+            Thread.sleep(400);
+            swiftbot.disableUnderlights();
+            Thread.sleep(1000);
+        }
+    }
 }

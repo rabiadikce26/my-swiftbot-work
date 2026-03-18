@@ -13,6 +13,13 @@ public class movement {
     private static final int TURN_TIME_MS    = 550;  
     private static final int TRAVEL_TIME_MS  = 3000;
     
+    public movement(SwiftBotAPI swiftbot, String senderLocation, String destination) {
+        this.swiftbot = swiftbot;
+        this.senderLocation = senderLocation;
+        this.destination = destination;
+        this.currentLocation = senderLocation;
+        this.currentOrientation = senderLocation + "facing" + destination;
+    }
     
     public void goToDestination() throws InterruptedException {
     	
