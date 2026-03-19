@@ -50,7 +50,7 @@ public class spybotMain {
         System.out.println(allColours.PURPLE + "\n====================");
         System.out.println("   MESSAGE STATUS");
         System.out.println("====================" + allColours.RESET);
-        System.out.println(allColours.GREEN + "Successfully arrived at destination!" + allColours.RESET);
+        System.out.println(allColours.GREEN + "Successfully" + allColours.RESET + " arrived at destination!");
         System.out.println("\nIn order to verify that you are the intended recipient, please scan");
         System.out.println("your QR code in front of the SwiftBot's camera.");
 

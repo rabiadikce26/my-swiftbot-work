@@ -50,23 +50,13 @@ public class morseDict {
 
 	//whenever this is called, it will print out the dictionary on the console
 	public void showDict() {
-		System.out.println("\nHere is the morse code dictionary to help with writing messages:\n");
-        int count = 0;
-        
-        //goes through every entry, getting both values in the entry to then print them like this
-        //A: .-      | G: -.   
-        //B: -...    | H: ....
-        for (Map.Entry<String, String> entry : char2morse.entrySet()) {
-            System.out.printf("%-2s: %-7s", entry.getKey(), entry.getValue());
-            count++;
-            //makes sure each column has no more than 6 rows
-            if (count % 5 == 0) {
-                System.out.println();
-            } else {
-                System.out.print(" | ");
-            }
-        }
-        System.out.println();
+	    System.out.println("\nHere is the morse code dictionary to help with writing messages:\n");
+	    System.out.println("A: .-      | G: --.    | M: --     | S: ...    | Y: -.--");
+	    System.out.println("B: -...    | H: ....   | N: -.     | T: -      | Z: --..");
+	    System.out.println("C: -.-.    | I: ..     | O: ---    | U: ..-    | 0: -----");
+	    System.out.println("D: -..     | J: .---   | P: .--.   | V: ...-   |");
+	    System.out.println("E: .       | K: -.-    | Q: --.-   | W: .--    |");
+	    System.out.println("F: ..-.    | L: .-..   | R: .-.    | X: -..-   |");
 	}
 	
 }

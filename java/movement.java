@@ -11,7 +11,7 @@ public class movement {
     //movement constants 
     private static final int MOVE_SPEED      = 60;  
     private static final int TURN_TIME_MS    = 550;  
-    private static final int TRAVEL_TIME_MS  = 3000;
+    private static final int TRAVEL_TIME_MS  = 3500;
     
     public movement(SwiftBotAPI swiftbot, String senderLocation, String destination) {
         this.swiftbot = swiftbot;
@@ -104,7 +104,7 @@ public class movement {
     private void turnAround() throws InterruptedException {
         //do a 180 turn by doing two 90 degree turns in same direction
         swiftbot.startMove(MOVE_SPEED, -MOVE_SPEED);
-        Thread.sleep(TURN_TIME_MS * 2);
+        Thread.sleep((long) (TURN_TIME_MS * 1.69));
         swiftbot.stopMove();
         Thread.sleep(300);
     }
